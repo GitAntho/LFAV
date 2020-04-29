@@ -15,3 +15,12 @@ footer {
     display: block;
     height: 200px;
 }
+
+#img-home {
+    height: 200px;
+    display: block;
+}
+
+h1 {
+    text-align: center;
+}

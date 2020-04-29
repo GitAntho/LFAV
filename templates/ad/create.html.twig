@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création d'un article{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="my-5">Vous pouvez créer un nouvel article</h1>
+
+        {{ form_start(form) }}
+
+        <div class="row">
+            <div class="col">
+                {{ form_widget(form) }}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
