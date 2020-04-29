@@ -1,3 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
 {% block body %}
-    <p>Test</p>
+    <div class="container">
+        <h1 class="my-5 text-center">
+            Bienvenue sur le site LFAV <br>
+            (Les Films À Voir)
+        </h1>
+
+        <img src="/images/illustration.png" alt="Image d'accueil" class="d-block mx-auto">
+
+        <h3 class="text-center my-5">
+            Ce site à pour but de vous faire découvrir des films qualitatifs <br>
+            (ce n'est qu'un avis personnel !)
+        </h3>
+
+        <h4 class="my-5 text-center">Quelques exemples de films</h4>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card bg-light">
+                    <div class="card-header text-center">
+                        <strong>Action</strong><br>
+                        <small>Pas encore noté</small>
+                    </div>
+
+                    <img src="http://placehold.it/200x200" alt="Image de Matrix" class="img-home">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Matrix</h5>
+                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, iste minima blanditiis possimus voluptatibus, praesentium totam aspernatur temporibus quia laudantium iusto quaerat? Unde sunt error accusamus modi. Odit, ipsum molestias.</p>
+                        <a href="#" class="btn btn-primary">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card bg-light">
+                    <div class="card-header text-center">
+                        <strong>Action</strong><br>
+                        <small>Pas encore noté</small>
+                    </div>
+
+                    <img src="http://placehold.it/200x200" alt="Image de Matrix" class="img-home">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Matrix</h5>
+                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, iste minima blanditiis possimus voluptatibus, praesentium totam aspernatur temporibus quia laudantium iusto quaerat? Unde sunt error accusamus modi. Odit, ipsum molestias.</p>
+                        <a href="#" class="btn btn-primary">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card bg-light">
+                    <div class="card-header text-center">
+                        <strong>Action</strong><br>
+                        <small>Pas encore noté</small>
+                    </div>
+
+                    <img src="http://placehold.it/200x200" alt="Image de Matrix" class="img-home">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Matrix</h5>
+                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, iste minima blanditiis possimus voluptatibus, praesentium totam aspernatur temporibus quia laudantium iusto quaerat? Unde sunt error accusamus modi. Odit, ipsum molestias.</p>
+                        <a href="#" class="btn btn-primary">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
