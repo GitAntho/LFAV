@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AdRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Ad
 {
@@ -40,6 +42,31 @@ class Ad
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     *
+     * @return void
+     */
+    public function prePersist()
+    {
+        if(empty($this->createdAt)){
+            $this->createdAt = new \DateTime();
+        }
+
+        $this->updatedAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -102,6 +129,30 @@ class Ad
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

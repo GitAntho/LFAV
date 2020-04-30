@@ -17,15 +17,17 @@ class AdType extends ApplicationType
             ->add(
                 'title',
                 TextType::class,
-                $this->getConfiguration('Le nom de votre film', 'Mettez le nom de votre film ici')
+                $this->getConfiguration('Le nom de votre film', 'Mettez le nom du film ici')
             )
             ->add(
                 'content',
                 TextareaType::class,
-                $this->getConfiguration('Description de votre film', 'Mettez ici toute la description du film')
+                $this->getConfiguration('Description complète de votre film', 'Mettez ici toute la description du film')
             )
             ->add(
-                'introduction'
+                'introduction',
+                TextareaType::class,
+                $this->getConfiguration('Description rapide de votre film', 'Mettez ici une description en quelques ligne du film')
             )
             ->add(
                 'coverImage'
