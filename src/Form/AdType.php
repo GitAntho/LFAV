@@ -17,7 +17,12 @@ class AdType extends ApplicationType
             ->add(
                 'title',
                 TextType::class,
-                $this->getConfiguration('Le nom de votre film', 'Mettez le nom du film ici')
+                $this->getConfiguration('Le nom de votre film', 'Mettez le nom du film')
+            )
+            ->add(
+                'category',
+                TextType::class,
+                $this->getConfiguration('La catégorie de votre film', 'Choisissez la catégorie du film')
             )
             ->add(
                 'content',
