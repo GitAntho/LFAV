@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,11 +37,6 @@ class Ad
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $coverImage;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $slug;
 
     /**
@@ -59,6 +55,12 @@ class Ad
     private $category;
 
     /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Image", inversedBy="ad", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $imageFilm;
+
+    /**
      * @ORM\PrePersist
      * @ORM\PreUpdate
      *
@@ -71,6 +73,20 @@ class Ad
         }
 
         $this->updatedAt = new \DateTime();
+    }
+
+    /** 
+     * Permet d'initialiser le slug
+     * 
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function initializeSlug()
+    {
+        if(empty($this->slug)) {
+            $slugify = new Slugify();
+            $this->slug = $slugify->slugify($this->title);
+        }
     }
 
     public function getId(): ?int
@@ -110,18 +126,6 @@ class Ad
     public function setIntroduction(string $introduction): self
     {
         $this->introduction = $introduction;
-
-        return $this;
-    }
-
-    public function getCoverImage(): ?string
-    {
-        return $this->coverImage;
-    }
-
-    public function setCoverImage(string $coverImage): self
-    {
-        $this->coverImage = $coverImage;
 
         return $this;
     }
@@ -170,6 +174,18 @@ class Ad
     public function setCategory(string $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getImageFilm(): ?Image
+    {
+        return $this->imageFilm;
+    }
+
+    public function setImageFilm(Image $imageFilm): self
+    {
+        $this->imageFilm = $imageFilm;
 
         return $this;
     }

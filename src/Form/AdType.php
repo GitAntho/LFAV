@@ -35,10 +35,16 @@ class AdType extends ApplicationType
                 $this->getConfiguration('Description rapide de votre film', 'Mettez ici une description en quelques ligne du film')
             )
             ->add(
-                'coverImage'
+                'imageFilm',
+                ImageType::class,
+                ['label' => false]
             )
             ->add(
-                'slug'
+                'slug',
+                TextType::class,
+                $this->getConfiguration(false, 'Remplis automatiquement', [
+                    'required' => false
+                ])
             )
         ;
     }

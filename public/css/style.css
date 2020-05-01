@@ -10,10 +10,10 @@ footer {
     background-color: rgba(0, 0, 0, 0.46);
 }
 
-.img-home {
-    width: 100%;
+.img-card {
     display: block;
-    height: 200px;
+    height: 350px;
+    margin: 0 auto;
 }
 
 #img-home {

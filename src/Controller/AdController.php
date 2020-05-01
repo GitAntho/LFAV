@@ -41,6 +41,18 @@ class AdController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+            $ad = $form->getData();
+
+            $image = $ad->getImageFilm();
+
+            $file = $image->getFile();
+
+            $name = $ad->getTitle() . '.' . $file->guessExtension();
+
+            $file->move('../public/images', $name);
+
+            $image->setName($name);
+
             $manager->persist($ad);
             $manager->flush();
 
