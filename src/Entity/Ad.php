@@ -54,6 +54,11 @@ class Ad
     private $updatedAt;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $category;
+
+    /**
      * @ORM\PrePersist
      * @ORM\PreUpdate
      *
@@ -153,6 +158,18 @@ class Ad
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(string $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
