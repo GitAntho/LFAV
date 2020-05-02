@@ -12,12 +12,14 @@
             <div class="col-md-4">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <h3>{{ ad.title }}</h3>
+                        <h3 class="text-center">{{ ad.title }}</h3>
                         <img src="{{ asset('images/')~ad.imageFilm.name }}" alt="Image" class="img-card">
                     </div>
                     <div class="card-body">
 
-                        <p>{{ ad.content }}</p>
+                        <p class="text-center">{{ ad.content }}</p>
+
+                        <a href="{{ path("ad_show", {'slug': ad.slug}) }}" class="btn btn-success">En savoir plus</a>
                     </div>
                 </div>
             </div>

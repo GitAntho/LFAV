@@ -68,4 +68,17 @@ class AdController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * Affiche 1 film détaillé
+     * 
+     * @Route("/ad/{slug}", name="ad_show")
+     *
+     * @return Response
+     */
+    public function show(Ad $ad){
+        return $this->render('ad/show.html.twig', [
+            'ad' => $ad
+        ]);
+    }
 }
