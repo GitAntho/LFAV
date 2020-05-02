@@ -12,7 +12,8 @@ footer {
 
 .img-card {
     display: block;
-    height: 350px;
+    max-height: 350px;
+    max-width: 300px;
     margin: 0 auto;
 }
 
@@ -23,4 +24,8 @@ footer {
 
 h1 {
     text-align: center;
+}
+
+.custom-file-label::after {
+    content: "Parcourir";
 }

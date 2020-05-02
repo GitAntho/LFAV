@@ -47,7 +47,7 @@ class AdController extends AbstractController
 
             $file = $image->getFile();
 
-            $name = $ad->getTitle() . '.' . $file->guessExtension();
+            $name = $ad->getTitle() . '_' . md5(uniqid()) . '.' . $file->guessExtension();
 
             $file->move('../public/images', $name);
 

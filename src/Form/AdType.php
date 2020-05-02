@@ -25,26 +25,19 @@ class AdType extends ApplicationType
                 $this->getConfiguration('La catégorie de votre film', 'Choisissez la catégorie du film')
             )
             ->add(
-                'content',
-                TextareaType::class,
-                $this->getConfiguration('Description complète de votre film', 'Mettez ici toute la description du film')
-            )
-            ->add(
                 'introduction',
                 TextareaType::class,
                 $this->getConfiguration('Description rapide de votre film', 'Mettez ici une description en quelques ligne du film')
             )
             ->add(
+                'content',
+                TextareaType::class,
+                $this->getConfiguration('Description complète de votre film', 'Mettez ici toute la description du film')
+            )
+            ->add(
                 'imageFilm',
                 ImageType::class,
                 ['label' => false]
-            )
-            ->add(
-                'slug',
-                TextType::class,
-                $this->getConfiguration(false, 'Remplis automatiquement', [
-                    'required' => false
-                ])
             )
         ;
     }
