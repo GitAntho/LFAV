@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+use App\Entity\Image;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User
 {
@@ -38,7 +40,8 @@ class User
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToOne(targetEntity="App\Entity\Image", inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $avatar;
 
@@ -57,8 +60,12 @@ class User
     {
         if(empty($this->slug)) {
             $slugify = new Slugify();
-            $this->slug = $slugify->slugify($this->title);
+            $this->slug = $slugify->slugify("{$this->getFirstName()} {$this->getLastName()}");
         }
+    }
+
+    public function getFullname(){
+        return "{$this->getFirstName()} {$this->getLastName()}";
     }
 
     public function getId(): ?int
@@ -114,12 +121,12 @@ class User
         return $this;
     }
 
-    public function getAvatar(): ?string
+    public function getAvatar(): ?Image
     {
         return $this->avatar;
     }
 
-    public function setAvatar(string $avatar): self
+    public function setAvatar(Image $avatar): self
     {
         $this->avatar = $avatar;
 

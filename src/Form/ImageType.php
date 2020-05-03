@@ -17,7 +17,7 @@ class ImageType extends ApplicationType
             ->add(
                 'file',
                 FileType::class,
-                $this->getConfiguration('Affiche du film', 'Mettez ici votre affiche de film')
+                $this->getConfiguration('Ajoutez votre image', 'Mettez ici votre image')
             )
         ;
     }

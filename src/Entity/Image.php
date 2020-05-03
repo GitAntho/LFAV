@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -28,6 +29,11 @@ class Image
      * @ORM\OneToOne(targetEntity="App\Entity\Ad", mappedBy="imageFilm", cascade={"persist", "remove"})
      */
     private $ad;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="avatar", cascade={"persist", "remove"})
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -70,6 +76,31 @@ class Image
         // set the owning side of the relation if necessary
         if ($ad->getImageFilm() !== $this) {
             $ad->setImageFilm($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of user
+     */ 
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set the value of user
+     *
+     * @return  self
+     */ 
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+
+        // set the owning side of the relation if necessary
+        if ($user->getAvatar() !== $this) {
+            $user->setAvatar($this);
         }
 
         return $this;

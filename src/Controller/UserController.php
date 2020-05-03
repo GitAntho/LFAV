@@ -18,14 +18,38 @@ class UserController extends AbstractController
         return $this->render('account/index.html.twig');
     }
 
-    public function register(Request $request, EntityManagerInterface $manager, User  $user){
+    /**
+     * Création d'un utilisateur
+     * 
+     * @Route("/register", name="register")
+     */
+    public function register(Request $request, EntityManagerInterface $manager){
         $user = new User();
 
-        $form = $this->createForm(AccountType::class);
+        $form = $this->createForm(AccountType::class, $user);
 
         $form->handleRequest($request);
 
-        
+        if($form->isSubmitted() && $form->isValid()){
+            $user = $form->getData();
+            $image = $user->getAvatar();
+            $file = $image->getFile();
+
+            $name = $user->getFullName() . '_' . md5(uniqid()) . '.' . $file->guessExtension();
+            $file->move('../public/images/avatar', $name);
+
+            $image->setName($name);
+
+            $manager->persist($user);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Votre compte a bien été créé'
+            );
+
+            return $this->redirectToRoute('homepage');
+        }
 
         return $this->render('account/register.html.twig', [
             'form' => $form->createView()

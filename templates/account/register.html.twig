@@ -3,5 +3,22 @@
 {% block title %}Page d'inscription{% endblock %}
 
 {% block body %}
+    <div class="container">
+        <h1 class="my-5">Rejoignez nous</h1>
 
+        <div class="row">
+            <div class="col">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+
+                <button type="submit" class="btn btn-success">S'enregistrer</button>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/upload_file.js"></script>
 {% endblock %}
