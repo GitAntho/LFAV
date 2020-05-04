@@ -12,12 +12,31 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('ads') }}">Films</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if app.user %}
+                <li class="nav-item dropdown mr-2">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <img src="{{ asset('images/avatar/')~app.user.avatar.name }}" alt="" class="avatar-mini mr-3">{{ app.user.fullName }} 
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ path('ad_create') }}">Ajouter un film</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('user', {'slug': app.user.slug }) }}">Mon profil</a>
+                        <a class="dropdown-item" href="#">Modifier mon compte</a>
+                        <a class="dropdown-item" href="#">Modifier mon password</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('logout') }}">Déconnexion</a>
+                    </div>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a href="{{ path('login') }}" class="nav-link">Connexion</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('register') }}" class="nav-link">S'enregister</a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </nav>

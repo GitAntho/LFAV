@@ -5,12 +5,13 @@ namespace App\Entity;
 use App\Entity\Image;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -38,6 +39,8 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $password;
+
+    private $passwordConfirm;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Image", inversedBy="user", cascade={"persist", "remove"})
@@ -144,4 +147,30 @@ class User
 
         return $this;
     }
+
+    public function getPasswordConfirm(): ?string
+    {
+        return $this->passwordConfirm;
+    }
+
+    public function setPasswordConfirm(String $passwordConfirm): self
+    {
+        $this->passwordConfirm = $passwordConfirm;
+
+        return $this;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getSalt(){}
+
+    public function getUsername()
+    {
+        return $this->email;
+    }
+    
+    public function eraseCredentials(){}
 }

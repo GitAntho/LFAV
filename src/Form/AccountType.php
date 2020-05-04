@@ -36,6 +36,11 @@ class AccountType extends ApplicationType
                 $this->getConfiguration('Votre mot de passe', 'Mettez ici votre mot de passe')
             )
             ->add(
+                'passwordConfirm',
+                PasswordType::class,
+                $this->getConfiguration('Vérification de votre mot de passe', 'Mettez ici votre mot de passe')
+            )
+            ->add(
                 'avatar',
                 ImageType::class,
                 ['label' => false]

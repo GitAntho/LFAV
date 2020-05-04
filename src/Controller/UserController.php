@@ -8,14 +8,33 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user", name="user")
+     * @Route("/user/{slug}", name="user")
      */
     public function index(){
         return $this->render('account/index.html.twig');
+    }
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function login(){
+        return $this->render('account/login.html.twig');
+    }
+
+    /**
+     * Permet le logout
+     * 
+     * @Route("/logout", name="logout")
+     *
+     * @return void
+     */
+    public function logout(){
+
     }
 
     /**
@@ -23,7 +42,7 @@ class UserController extends AbstractController
      * 
      * @Route("/register", name="register")
      */
-    public function register(Request $request, EntityManagerInterface $manager){
+    public function register(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder){
         $user = new User();
 
         $form = $this->createForm(AccountType::class, $user);
@@ -31,7 +50,12 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $user = $form->getData();
+
+            // Gestion du password
+            $hash = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($hash);
+            
+            // Gestion de l'avatar
             $image = $user->getAvatar();
             $file = $image->getFile();
 
