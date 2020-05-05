@@ -5,10 +5,16 @@ namespace App\Entity;
 use DateTime;
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AdRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity(
+ *  fields={"title"},
+ *  message="Un film porte déjà ce nom, merci de choisir un autre film"
+ * )
  */
 class Ad
 {
@@ -21,16 +27,19 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Merci d'ajouter un titre")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min=200, minMessage="Ce champ doit faure au moins 200 caractères")
      */
     private $content;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min=50, minMessage="Ce champ doit faire au moins 40 caractères")
      */
     private $introduction;
 
@@ -59,6 +68,12 @@ class Ad
      * @ORM\JoinColumn(nullable=false)
      */
     private $imageFilm;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ads")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
 
     /**
      * @ORM\PrePersist
@@ -186,6 +201,18 @@ class Ad
     public function setImageFilm(Image $imageFilm): self
     {
         $this->imageFilm = $imageFilm;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

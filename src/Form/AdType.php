@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Ad;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,8 +21,23 @@ class AdType extends ApplicationType
             )
             ->add(
                 'category',
-                TextType::class,
-                $this->getConfiguration('La catégorie de votre film', 'Choisissez la catégorie du film')
+                ChoiceType::class, [
+                    'label' => 'La catégorie de votre film',
+                    'choices' => [
+                        'Action' => 'Action',
+                        'Animation' => 'Animation',
+                        'Aventure' => 'Aventure',
+                        'Comédie' => 'Comédie',
+                        'Drame' => 'Drame',
+                        'Fantastique' => 'Fantastique',
+                        'Historique' => 'Historique',
+                        'Horreur' => 'Horreur',
+                        'Policier' => 'Policier',
+                        'Romance'  => 'Romance',
+                        'Science Fiction' => 'Science Fiction',
+                        'Thriller' => 'Thriller'
+                    ]
+                ]
             )
             ->add(
                 'introduction',

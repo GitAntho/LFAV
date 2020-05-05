@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="my-5">Choisissez une catégorie</h1>
+
+        <ul>
+            <li><a href="{{ path('category_action') }}">Action</a></li>
+            <li><a href="{{ path('category_animation') }}">Animation</a></li>
+            <li><a href="{{ path('category_adventure') }}">Aventure</a></li>
+            <li><a href="{{ path('category_comedy') }}">Comédie</a></li>
+            <li><a href="{{ path('category_drama') }}">Drame</a></li>
+            <li><a href="{{ path('category_fantastic') }}">Fantastique</a></li>
+            <li><a href="{{ path('category_historical') }}">Historique</a></li>
+            <li><a href="{{ path('category_horror') }}">Horreur</a></li>
+            <li><a href="{{ path('category_police') }}">Policier</a></li>
+            <li><a href="{{ path('category_romance') }}">Romance</a></li>
+            <li><a href="{{ path('category_sf') }}">Science Fiction</a></li>
+            <li><a href="{{ path('category_thriller') }}">Thriller</a></li>
+        </ul>
+    </div>
+{% endblock %}

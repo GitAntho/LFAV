@@ -44,11 +44,13 @@ h1 {
     border-color: #0164c7;
 }
 
-div.card-header>a {
+div.card-header>a,
+a.text-deco-no {
     color: #343a40;
 }
 
-div.card-header>a:hover {
+div.card-header>a:hover,
+a.text-deco-no:hover {
     text-decoration: none;
     color: #343a40;
 }
@@ -57,4 +59,22 @@ div.card-header>a:hover {
     max-width: 40px;
     max-height: 40px;
     border-radius: 50%;
+}
+
+.avatar {
+    max-width: 64px;
+    max-height: 64px;
+    border-radius: 50%;
+}
+
+a>img:hover {
+    text-decoration: none;
+}
+
+.image-show {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 1.5rem;
+    max-width: 450px;
+    max-height: 450px;
 }
