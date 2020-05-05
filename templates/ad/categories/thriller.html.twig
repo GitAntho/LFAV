@@ -6,30 +6,6 @@
     <div class="container">
         <h1 class="my-5">Films thriller</h1>
 
-        <div class="row">
-
-            {% for ad in ads %}
-            <div class="col-md-4">
-                <div class="card mb-3 bg-light">
-                    <div class="card-header">
-                        <a href="{{ path("ad_show", {'slug': ad.slug}) }}">
-                            <h3 class="text-center mb-1">{{ ad.title }}</h3>
-                        </a>
-                        <h5 class="text-center">{{ ad.category }}</h5>
-                        <a href="{{ path("ad_show", {'slug': ad.slug}) }}">
-                            <img src="{{ asset('images/film/')~ad.imageFilm.name }}" alt="Image" class="img-card">
-                        </a>
-                    </div>
-                    <div class="card-body">
-
-                        <p class="text-center">{{ ad.introduction | etc }}</p>
-
-                        <a href="{{ path("ad_show", {'slug': ad.slug}) }}" class="btn btn-secondary">En savoir plus</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-            
-        </div>
+        {% include 'ad/categories/_categories.html.twig' %}
     </div>
 {% endblock %}
