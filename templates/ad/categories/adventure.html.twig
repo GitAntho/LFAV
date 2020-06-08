@@ -6,6 +6,10 @@
     <div class="container">
         <h1 class="my-5">Films d'aventure</h1>
 
-        {% include 'ad/categories/_categories.html.twig' %}
+        <div class="row">
+            {% for ad in ads %}
+                {% include 'ad/_card.html.twig' %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
-use App\Form\AdType;
+use App\Form\FilmType;
+use App\Form\FilmEditType;
 use App\Repository\AdRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,6 +28,37 @@ class AdController extends AbstractController
     }
 
     /**
+     * Permet d'éditer un article
+     * 
+     * @Route("/ad/edit/{slug}", name="edit_film")
+     *
+     * @return void
+     */
+    public function edit(Ad $ad, EntityManagerInterface $manager, Request $request){
+        $form = $this->createForm(FilmEditType::class, $ad);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){            
+            $manager->persist($ad);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "L'article {$ad->getTitle()} a bien été modifié"
+            );
+
+            return $this->redirectToRoute('ads');
+        }
+
+
+        return $this->render('ad/edit.html.twig', [
+            'ad' => $ad,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
      * Permet la création d'un article
      *
      * @Route("/ads/create", name="ad_create")
@@ -36,7 +68,7 @@ class AdController extends AbstractController
     public function create(EntityManagerInterface $manager, Request $request){
         $ad =  new Ad();
 
-        $form = $this->createForm(AdType::class, $ad);
+        $form = $this->createForm(FilmType::class, $ad);
 
         $form->handleRequest($request);
 

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Édition du film {{ ad.title }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Édition du film {{ ad.title }}</h1>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        <button type="submit" class="btn btn-success">
+            Enregistrer les modifications
+        </button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/upload_file.js"></script>
+{% endblock %}

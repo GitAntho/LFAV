@@ -84,3 +84,15 @@ a>img:hover {
     max-width: 450px;
     max-height: 450px;
 }
+
+textarea {
+    resize: none !important;
+    height: 200px !important;
+}
+
+@media screen and (max-width: 768px) {
+    .film-mobile {
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+}
