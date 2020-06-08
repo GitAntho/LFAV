@@ -1,9 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page du compte{% endblock %}
+{% block title %}Page de {{ user.fullName }}{% endblock %}
 
 {% block body %}
     <div class="container">
-        <h1 class="my-5">Compte</h1>
+        <div class="row align-items-center mt-3">
+            <div class="col-5 text-center">
+                <img src="{{ asset('images/avatar/')~user.avatar.name }}" alt="Avatar de {{ user.fullname }}" class="avatar-profil">
+                <br>
+                <span class="btn btn-success center-block mt-3">{{ user.ads | length }} films</span>
+            </div>
+
+            <div class="col">
+                <h1 class="">{{ user.fullname }}</h1>
+                {% if app.user is same as (user) %}
+                    <div class="mt-3 text-center">
+                        <a href="#" class="btn btn-secondary mt-2">Modifier mes informations</a>
+                        <a href="#" class="btn btn-secondary mt-2">Modifier mon mot de passe</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if user.ads | length > 0 %}
+            <div class="row mt-3">
+                {% for ad in user.ads %}
+                    <div class="col-md-4">
+                        <div class="card mb-3 bg-light">
+                            <div class="card-header">
+                                <a href="{{ path("ad_show", {'slug': ad.slug}) }}">
+                                    <h3 class="text-center mb-1">{{ ad.title }}</h3>
+                                </a>
+                                <h5 class="text-center">{{ ad.category }}</h5>
+                                <a href="{{ path("ad_show", {'slug': ad.slug}) }}">
+                                    <img src="{{ asset('images/film/')~ad.imageFilm.name }}" alt="Image" class="img-card">
+                                </a>
+                            </div>
+                            <div class="card-body">
+
+                                <p class="text-center">{{ ad.introduction | etc }}</p>
+
+                                <a href="{{ path("ad_show", {'slug': ad.slug}) }}" class="btn btn-secondary">En savoir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

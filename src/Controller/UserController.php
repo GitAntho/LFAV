@@ -13,10 +13,14 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
+     * Affiche la page d'un utilisateur
+     * 
      * @Route("/user/{slug}", name="user")
      */
-    public function index(){
-        return $this->render('account/index.html.twig');
+    public function index(User $user){
+        return $this->render('account/index.html.twig', [
+            'user' => $user
+        ]);
     }
 
     /**

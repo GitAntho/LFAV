@@ -92,7 +92,7 @@ class User implements UserInterface
         }
     }
 
-    public function getFullname(){
+    public function getFullName(){
         return "{$this->getFirstName()} {$this->getLastName()}";
     }
 
