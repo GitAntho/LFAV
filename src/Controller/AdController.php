@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\Repository\RepositoryFactory;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdController extends AbstractController
@@ -31,6 +32,7 @@ class AdController extends AbstractController
      * Permet d'éditer un article
      * 
      * @Route("/ad/edit/{slug}", name="edit_film")
+     * @IsGranted("ROLE_USER")
      *
      * @return void
      */
@@ -62,6 +64,7 @@ class AdController extends AbstractController
      * Permet la création d'un article
      *
      * @Route("/ads/create", name="ad_create")
+     * @IsGranted("ROLE_USER")
      * 
      * @return Response
      */

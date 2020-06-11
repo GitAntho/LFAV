@@ -19,56 +19,9 @@
         <h3 class="my-5 text-center">Quelques exemples de films</h3>
 
         <div class="row">
-            <div class="col-md-4">
-                <div class="card bg-light">
-                    <div class="card-header text-center">
-                        <strong>Action</strong><br>
-                        <small>Pas encore noté</small>
-                    </div>
-
-                    <img src="http://placehold.it/200x200" alt="Image de Matrix" class="img-card">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Matrix</h5>
-                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, iste minima blanditiis possimus voluptatibus, praesentium totam aspernatur temporibus quia laudantium iusto quaerat? Unde sunt error accusamus modi. Odit, ipsum molestias.</p>
-                        <a href="#" class="btn btn-primary">En savoir plus</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card bg-light">
-                    <div class="card-header text-center">
-                        <strong>Action</strong><br>
-                        <small>Pas encore noté</small>
-                    </div>
-
-                    <img src="http://placehold.it/200x200" alt="Image de Matrix" class="img-card">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Matrix</h5>
-                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, iste minima blanditiis possimus voluptatibus, praesentium totam aspernatur temporibus quia laudantium iusto quaerat? Unde sunt error accusamus modi. Odit, ipsum molestias.</p>
-                        <a href="#" class="btn btn-primary">En savoir plus</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card bg-light">
-                    <div class="card-header text-center">
-                        <strong>Action</strong><br>
-                        <small>Pas encore noté</small>
-                    </div>
-
-                    <img src="http://placehold.it/200x200" alt="Image de Matrix" class="img-card">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Matrix</h5>
-                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, iste minima blanditiis possimus voluptatibus, praesentium totam aspernatur temporibus quia laudantium iusto quaerat? Unde sunt error accusamus modi. Odit, ipsum molestias.</p>
-                        <a href="#" class="btn btn-primary">En savoir plus</a>
-                    </div>
-                </div>
-            </div>
+            {% for ad in ads %}
+            {% include 'ad/_card.html.twig' %}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

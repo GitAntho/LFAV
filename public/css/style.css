@@ -55,6 +55,10 @@ a.text-deco-no:hover {
     color: #343a40;
 }
 
+.navbar-nav {
+    margin-right: 2%;
+}
+
 .avatar-mini {
     max-width: 40px;
     max-height: 40px;

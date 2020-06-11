@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\AccountType;
+use App\Form\InfoImageType;
+use App\Form\InfoGlobalType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
@@ -80,6 +83,34 @@ class UserController extends AbstractController
         }
 
         return $this->render('account/register.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * Permet la modification des informations du compte
+     *
+     * @Route("/account/profile", name="account_profile")
+     * @IsGranted("ROLE_USER")
+     */
+    public function editInfo(Request $request, EntityManagerInterface $manager){
+        $user = $this->getUser();
+
+        $form = $this->createForm(InfoGlobalType::class, $user);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $manager->persist($user);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "Vos informations ont bien étés mise à jour"
+            );
+        }
+
+        return $this->render('account/editInfo.html.twig', [
             'form' => $form->createView()
         ]);
     }
